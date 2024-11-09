@@ -4,10 +4,11 @@ import React from 'react'
 const layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className='flex justify-center items-center'>
-            <div>
-                <LoginLeftImage />
-            </div>
             <div>{children}</div>
+            <div>
+                <LoginLeftImage height='500' width="560"/>
+            </div>
+            
         </div>
     )
 }

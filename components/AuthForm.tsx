@@ -40,66 +40,73 @@ const AuthForm = ({ type }: { type: FormType }) => {
     }
 
     return (
-        <Form {...form} >
-            <form onSubmit={form.handleSubmit(onSubmit)} className="border-2 rounded-xl p-12 flex flex-col gap-4">
-                <div className="space-y-3">
-                    <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Email" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>Password</FormLabel>
-                                <FormControl>
-                                    <Input placeholder="Password" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    {
-                        type === 'sign-up' &&
+        <div className="border-2 rounded-xl p-8 flex flex-col gap-6">
+            <label className="font-light">Welcome !</label>
+            <div className="flex flex-col">
+                <label className="font-medium text-xl">{type === 'sign-in' ? 'Sign in to' : 'Sign up to'}</label>
+                <label className="font-light text-xs">Lorem ipsum dolor</label>
+            </div>
+            <Form {...form} >
+                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-4">
+                    <div className="space-y-3">
                         <FormField
                             control={form.control}
-                            name="cnfrmPass"
+                            name="email"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
+                                    <FormLabel>Email</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="Confirm Password" {...field} />
+                                        <Input placeholder="Email" {...field} />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                    }
-                </div>
-                <Button type="submit">{type === 'sign-in' ? 'Sign In' : 'Sign Up'}</Button>
-                <FormDescription>
-                    {
-                        type === 'sign-in' ? 'Dont have an account ? ' : 'Already have an account ? '
-                    }
-
-                    <Link href={type === 'sign-in' ? '/sign-up' : 'sign-in'} className="underline font-semibold hover:text-black">
+                        <FormField
+                            control={form.control}
+                            name="password"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Password</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Password" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                         {
-                            type === 'sign-in' ? 'Sign in' : 'Sign up'
+                            type === 'sign-up' &&
+                            <FormField
+                                control={form.control}
+                                name="cnfrmPass"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Confirm Password</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Confirm Password" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
                         }
-                    </Link>
-                </FormDescription>
-            </form>
-        </Form>
+                    </div>
+                    <Button type="submit">{type === 'sign-in' ? 'Sign In' : 'Sign Up'}</Button>
+                </form>
+            </Form>
+            <div className="font-light text-xs">
+                {
+                    type === 'sign-in' ? 'Dont have an account ? ' : 'Already have an account ? '
+                }
+
+                <Link href={type === 'sign-in' ? '/sign-up' : 'sign-in'} className="text-black font-semibold hover:underline">
+                    {
+                        type === 'sign-in' ? 'Sign up' : 'Sign in'
+                    }
+                </Link>
+            </div>
+        </div>
     )
 }
 
