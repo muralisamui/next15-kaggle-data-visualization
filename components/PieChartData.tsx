@@ -3,7 +3,6 @@
 import * as React from "react"
 import { TrendingUp } from "lucide-react"
 import { Label, Pie, PieChart } from "recharts"
-
 import {
   Card,
   CardContent,
@@ -18,50 +17,55 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
-const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 287, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 190, fill: "var(--color-other)" },
-]
 
-const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig
+interface ExportData {
+  Year: number
+  ReporterISO3: string
+  ReporterName: string
+  total_exports: number
+  rank: number
+  fill: string
+}
 
-export function PieChartData() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+
+interface PieChartProps {
+  country: string,
+  data: ExportData[]
+}
+
+const PieChartData: React.FC<PieChartProps> = ({ country, data }) => {
+
+  const chartData: ExportData[] = data
+
+  const chartConfig: ChartConfig = chartData.reduce((acc, data) => {
+    acc[data.Year] = {
+      label: `${data.Year}`,
+      color: data.fill,
+    }
+    return acc
+  }, {} as ChartConfig)
+
+  const formatNumber = (value: number): string => {
+    if (value >= 1e12) {
+      return `${(value / 1e12).toFixed(1)}T`; // Format in trillions
+    } else if (value >= 1e9) {
+      return `${(value / 1e9).toFixed(1)}B`; // Format in billions
+    } else if (value >= 1e6) {
+      return `${(value / 1e6).toFixed(1)}M`; // Format in millions
+    }
+    return value.toFixed(1); // Show up to one decimal place for smaller values
+  };
+
+  const totalExports = React.useMemo(() => {
+    const total = chartData.reduce((acc, curr) => acc + curr.total_exports, 0);
+    return formatNumber(total);
   }, [])
 
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <CardTitle>{country}'s Trade Exports - Pie Chart</CardTitle>
+        <CardDescription>Yearly Exports in Billions</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -70,14 +74,15 @@ export function PieChartData() {
         >
           <PieChart>
             <ChartTooltip
-              cursor={false}
+              cursor={true}
               content={<ChartTooltipContent hideLabel />}
             />
             <Pie
               data={chartData}
-              dataKey="visitors"
-              nameKey="browser"
-              innerRadius={60}
+              dataKey="total_exports"
+              nameKey="Year"
+              innerRadius={55}
+              outerRadius={80}
               strokeWidth={5}
             >
               <Label
@@ -95,18 +100,19 @@ export function PieChartData() {
                           y={viewBox.cy}
                           className="fill-foreground text-3xl font-bold"
                         >
-                          {totalVisitors.toLocaleString()}
+                          {totalExports}
                         </tspan>
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Total Exports
                         </tspan>
                       </text>
                     )
                   }
+                  return null
                 }}
               />
             </Pie>
@@ -115,12 +121,13 @@ export function PieChartData() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 font-medium leading-none">
-          Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
+          Trending up by 5.2% this year <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Showing total visitors for the last 6 months
+          Total exports for last 10 years
         </div>
       </CardFooter>
     </Card>
   )
 }
+export default PieChartData

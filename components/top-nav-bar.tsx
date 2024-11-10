@@ -12,7 +12,7 @@ const TopNavBar = () => {
                 <SidebarTrigger />
                 <div className='border border-1 rounded-3xl flex items-center gap-3 px-2 bg-[#F5F6FA] w-2/3'>
                     <SearchSVG />
-                    <input placeholder='search' className='border-none h-8 outline-none text-xs font-light bg-[#F5F6FA]' />
+                    <input placeholder='search' className='border-none h-8 outline-none text-xs font-light bg-[#F5F6FA] w-full' />
                 </div>
             </div>
             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
