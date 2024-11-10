@@ -1,4 +1,5 @@
 import "./globals.css";
+import React from "react";
 import { Poppins } from 'next/font/google'
 import type { Metadata } from "next";
 import { UserProvider } from '@auth0/nextjs-auth0/client';

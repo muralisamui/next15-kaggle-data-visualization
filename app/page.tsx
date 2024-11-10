@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Home() {
-  const { user, error, isLoading } = useUser();
+  const { user, isLoading } = useUser();
   const router = useRouter();
 
   useEffect(() => {

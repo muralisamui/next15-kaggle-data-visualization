@@ -7,7 +7,6 @@ import { filterLastNYears } from '@/lib/FilterNYearsData'
 import TradeChart from '@/components/TradeChart'
 import { Skeleton } from '@/components/ui/skeleton'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
-import { Card, CardContent } from '@/components/ui/card';
 
 const PieChartData = lazy(() => import('@/components/PieChartData'));
 
@@ -32,14 +31,11 @@ const FallbackComponent = () => {
 }
 
 const ProductHomePage = () => {
-
-    const [tradeData, setTradeData] = useState<any>(null);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
 
     useEffect(() => {
         const loadTradeData = async () => {
             const data = await import('../../../data/tradeData.json');
-            setTradeData(data.default);
             setIsDataLoaded(true);
         };
 

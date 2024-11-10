@@ -64,7 +64,7 @@ const PieChartData: React.FC<PieChartProps> = ({ country, data }) => {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>{country}'s Trade Exports - Pie Chart</CardTitle>
+        <CardTitle>Trade Exports - Pie Chart - {country}</CardTitle>
         <CardDescription>Yearly Exports in Billions</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
