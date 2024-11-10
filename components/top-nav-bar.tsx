@@ -7,7 +7,7 @@ import navbarData from '@/data/navbarData'
 const TopNavBar = () => {
     const { user } = navbarData;
     return (
-        <div className='flex gap-3 py-4 pr-4 items-center justify-between'>
+        <div className='sticky top-0 z-[1000] bg-white shadow-md flex gap-3 py-4 pr-4 items-center justify-between'>
             <div className='flex items-center gap-3 w-2/3'>
                 <SidebarTrigger />
                 <div className='border border-1 rounded-3xl flex items-center gap-3 px-2 bg-[#F5F6FA] w-2/3'>

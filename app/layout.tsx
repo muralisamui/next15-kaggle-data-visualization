@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Poppins } from 'next/font/google'
 import type { Metadata } from "next";
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -25,7 +26,9 @@ export default function RootLayout({
       <body
         className={poppins.className}
       >
-        {children}
+        <UserProvider>
+          {children}
+        </UserProvider>
       </body>
     </html>
   );

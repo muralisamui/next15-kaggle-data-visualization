@@ -8,9 +8,9 @@ const layout = ({ children }: { children: React.ReactNode }) => {
         <SidebarProvider>
             <AppSidebar />
             <main className='w-full'>
-                <TopNavBar/>
+                <TopNavBar />
                 <div className='bg-[#F5F6FA]'>
-                {children}
+                    {children}
                 </div>
             </main>
         </SidebarProvider>

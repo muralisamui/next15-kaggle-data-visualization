@@ -7,8 +7,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
             <div>{children}</div>
             <div>
                 <LoginLeftImage height='500' width="560"/>
-            </div>
-            
+            </div> 
         </div>
     )
 }

@@ -31,7 +31,7 @@ const FallbackComponent = () => {
     )
 }
 
-const Home = () => {
+const ProductHomePage = () => {
 
     const [tradeData, setTradeData] = useState<any>(null);
     const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -72,5 +72,5 @@ const Home = () => {
     )
 }
 
-export default Home
+export default ProductHomePage
 

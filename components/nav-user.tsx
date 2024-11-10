@@ -103,8 +103,12 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
-              Log out
+              <a href="/api/auth/logout">
+                <div className="flex gap-1 items-center">
+                  <LogOut className="size-4"/>
+                  <label>Log out</label>
+                </div>
+              </a>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
