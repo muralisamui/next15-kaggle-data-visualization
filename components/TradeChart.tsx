@@ -29,7 +29,7 @@ const countries = [...new Set(TradeData.map((item) => item.ReporterISO3))]
     .sort((a, b) => a.name.localeCompare(b.name));
 
 // Formatting function for large numbers
-function formatNumber(value ) {
+function formatNumber(value : number) {
     if (Math.abs(value) >= 1.0e12) return `$${(value / 1.0e12).toFixed(1)}T`;
     if (Math.abs(value) >= 1.0e9) return `$${(value / 1.0e9).toFixed(1)}B`;
     if (Math.abs(value) >= 1.0e6) return `$${(value / 1.0e6).toFixed(1)}M`;
@@ -118,7 +118,7 @@ const TradeChart = () => {
                             tickFormatter={formatNumber}
                         />
                         <Tooltip
-                            formatter={(value) => formatNumber(value)}
+                            formatter={(value) => formatNumber(value as number)}
                             labelFormatter={(label) => `Year: ${label}`}
                         />
                         <Legend />
