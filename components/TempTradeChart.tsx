@@ -59,7 +59,7 @@ const TempTradeChart = () => {
         <Card>
             <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
                 <div className="grid flex-1 gap-1 text-center sm:text-left">
-                    <CardTitle>Trade Data - Interactive Area Chart</CardTitle>
+                    <CardTitle>Trade Data - Area Chart</CardTitle>
                     <CardDescription>Displaying export data based on selected filters</CardDescription>
                 </div>
 
@@ -95,7 +95,7 @@ const TempTradeChart = () => {
                     <AreaChart
                         data={filteredData}
                         margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                        layout="vertical"
+                    // layout="vertical"
                     >
                         <defs>
                             <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
@@ -106,16 +106,15 @@ const TempTradeChart = () => {
 
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis
-                            dataKey="total_exports"
-                            type="number"
-                            domain={["dataMin", "dataMax"]}
-                            tickFormatter={formatNumber} // Format exports in K, M, B, T
-                        />
-                        <YAxis
                             dataKey="Year"
                             type="number"
                             domain={["dataMin", "dataMax"]}
-                        //   reversed={true} // Ensure minimum year is at the bottom
+                        />
+                        <YAxis
+                            dataKey="total_exports"
+                            type="number"
+                            domain={["dataMin", "dataMax"]}
+                            tickFormatter={formatNumber}
                         />
                         <Tooltip
                             formatter={(value) => formatNumber(value)}

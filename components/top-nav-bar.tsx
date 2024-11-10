@@ -6,7 +6,6 @@ import navbarData from '@/data/navbarData'
 
 const TopNavBar = () => {
     const { user } = navbarData;
-    console.log(user)
     return (
         <div className='flex gap-3 py-4 pr-4 items-center justify-between'>
             <div className='flex items-center gap-3 w-2/3'>

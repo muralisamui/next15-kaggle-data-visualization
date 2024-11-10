@@ -1,6 +1,6 @@
 import { AppSidebar } from '@/components/app-sidebar'
 import TopNavBar from '@/components/top-nav-bar'
-import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar'
+import { SidebarProvider } from '@/components/ui/sidebar'
 import React from 'react'
 
 const layout = ({ children }: { children: React.ReactNode }) => {
