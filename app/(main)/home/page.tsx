@@ -35,7 +35,7 @@ const ProductHomePage = () => {
 
     useEffect(() => {
         const loadTradeData = async () => {
-            const data = await import('../../../data/tradeData.json');
+            await import('../../../data/tradeData.json');
             setIsDataLoaded(true);
         };
 

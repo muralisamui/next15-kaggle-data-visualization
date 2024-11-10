@@ -29,7 +29,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
 
 export function NavUser({
   user,
@@ -40,7 +40,12 @@ export function NavUser({
     avatar: string
   }
 }) {
-  const { isMobile } = useSidebar()
+  const { isMobile } = useSidebar();
+  const router = useRouter();
+  
+  const handleLogout = () => {
+    router.push("/api/auth/logout")
+  }
 
   return (
     <SidebarMenu>
@@ -103,13 +108,11 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <a href="/api/auth/logout">
-                <div className="flex gap-1 items-center">
-                  <LogOut className="size-4"/>
-                  <label>Log out</label>
-                </div>
-              </a>
+            <DropdownMenuItem onClick={handleLogout}>
+              <div className="flex items-center gap-1">
+                <LogOut className="size-4" />
+                Log out
+              </div>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
