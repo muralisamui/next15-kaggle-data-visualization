@@ -1,10 +1,13 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+This is a [Next.js-15](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+Install and run the project:
 
 ```bash
+npm install --force
+
 npm run dev
 # or
 yarn dev
@@ -14,23 +17,30 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Deployed site: [https://next15-kaggle-data-visualization.vercel.app](https://next15-kaggle-data-visualization.vercel.app/home)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) for local development.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## Resouces used in the project
 
-To learn more about Next.js, take a look at the following resources:
+Resources used in the project:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.Js
+- TypeScript for type safety
+- Tailwind
+- Authentication - Auth0
+- Analytics - Kaggle-International-trade-analysis(https://www.kaggle.com/datasets/dollytheanalyst/international-trade-analysis)
+- Reacharts.js and Shadcn charts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Deployed on Vercel
 
-## Deploy on Vercel
+- React Query and Axios was not required as the JSON data was stored in the server.
+- Avoided React Query and Axios to minimize dependency.
+- Applied Caching techniques like 
+  - memoization  
+  - lazy-loading
+  - code-splitting
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+![Project-Dashboard](Trade-data.png)
