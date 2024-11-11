@@ -1,6 +1,8 @@
 
 This is a [Next.js-15](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+![Project-Dashboard](Trade-data.png)
+
 ## Getting Started
 
 Install and run the project:
@@ -41,6 +43,3 @@ Resources used in the project:
   - memoization  
   - lazy-loading
   - code-splitting
-
-
-![Project-Dashboard](Trade-data.png)
