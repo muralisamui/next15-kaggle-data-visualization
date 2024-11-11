@@ -7,6 +7,8 @@ import { filterLastNYears } from '@/lib/FilterNYearsData'
 import TradeChart from '@/components/TradeChart'
 import { Skeleton } from '@/components/ui/skeleton'
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { useRouter } from 'next/navigation';
 
 const PieChartData = lazy(() => import('@/components/PieChartData'));
 
@@ -31,7 +33,15 @@ const FallbackComponent = () => {
 }
 
 const ProductHomePage = () => {
+    const { user, isLoading } = useUser();
+    const router = useRouter();
     const [isDataLoaded, setIsDataLoaded] = useState(false);
+
+    useEffect(() => {
+        if (!isLoading && !user) {
+            router.replace("/api/auth/login");
+        }
+    }, [user, isLoading, router]);
 
     useEffect(() => {
         const loadTradeData = async () => {
@@ -42,8 +52,10 @@ const ProductHomePage = () => {
         loadTradeData();
     }, []);
 
-    if (!isDataLoaded) return <FallbackComponent />
-
+    if (isLoading || !isDataLoaded) return <FallbackComponent />
+    if (!user) {
+        return null; // Will redirect if user is not logged in
+    }
 
     const FilteredIndiaData = TradeData.filter((item) => item.ReporterName === "India");
     const IndiaData = assignRandomColors(filterLastNYears(FilteredIndiaData, 10))
